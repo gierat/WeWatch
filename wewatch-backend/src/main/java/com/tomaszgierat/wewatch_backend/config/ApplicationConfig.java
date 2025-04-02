@@ -12,10 +12,11 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 
 @Configuration
@@ -27,7 +28,7 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
     }
 
     @Bean
@@ -47,5 +48,6 @@ public class ApplicationConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
 
 }
