@@ -39,7 +39,6 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-        // najważniejsze — nowy sposób przypisania CORS konfiguracji
         http.setSharedObject(CorsConfigurationSource.class, corsConfigurationSource());
 
         return http.build();
