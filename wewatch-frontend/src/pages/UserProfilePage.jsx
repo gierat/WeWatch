@@ -32,7 +32,7 @@ const UserProfilePage = () => {
   return (
     <div className="min-h-screen bg-[#121212] text-white px-4 py-10">
       <div className="max-w-2xl mx-auto bg-[#1e1e1e] p-6 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold text-[#e50914] mb-6">{user.firstName}'s Profile</h1>
+        <h1 className="text-3xl font-bold text-[#e50914] mb-6">{user.nickname}'s Profile</h1>
         <div className="space-y-4">
           <p><span className="font-semibold">First Name:</span> {user.firstName}</p>
           <p><span className="font-semibold">Last Name:</span> {user.lastName}</p>

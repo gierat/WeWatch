@@ -1,5 +1,7 @@
 package com.tomaszgierat.wewatch_backend.controller;
 
+import com.tomaszgierat.wewatch_backend.dto.response.UserResponse;
+import com.tomaszgierat.wewatch_backend.model.User;
 import com.tomaszgierat.wewatch_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,17 @@ public class UserController {
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         var user = userRepository.findById(id);
         if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
+            User u = user.get();
+            return ResponseEntity.ok(
+                    UserResponse.builder()
+                            .id(u.getId())
+                            .firstName(u.getFirstName())
+                            .lastName(u.getLastName())
+                            .nickname(u.getNickname())
+                            .email(u.getEmail())
+                            .role(u.getRole().name())
+                            .build()
+            );
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }

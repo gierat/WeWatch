@@ -6,6 +6,7 @@ const RegisterForm = () => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
+        nickname: '',
         email: '',
         password: '',
     });
@@ -49,7 +50,15 @@ const RegisterForm = () => {
                         className="mb-4 p-3 rounded bg-[#2a2a2a] text-white focus:outline-none focus:ring-2 focus:ring-[#e50914]"
                         required
                     />
-
+                    <label className="mb-1 text-sm">Nickname:</label>
+                        <input
+                        type="text"
+                        name="nickname"
+                        value={formData.nickname}
+                        onChange={handleChange}
+                        className="mb-4 p-3 rounded bg-[#2a2a2a] text-white focus:outline-none focus:ring-2 focus:ring-[#e50914]"
+                        required
+                        />
                     <label className="mb-1 text-sm">Email:</label>
                     <input
                         type="email"
