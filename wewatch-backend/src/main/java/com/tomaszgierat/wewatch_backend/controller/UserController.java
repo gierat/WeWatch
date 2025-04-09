@@ -1,6 +1,7 @@
 package com.tomaszgierat.wewatch_backend.controller;
 
 import com.tomaszgierat.wewatch_backend.dto.response.UserResponse;
+import com.tomaszgierat.wewatch_backend.mapper.UserMapper;
 import com.tomaszgierat.wewatch_backend.model.User;
 import com.tomaszgierat.wewatch_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +23,7 @@ public class UserController {
         var user = userRepository.findById(id);
         if (user.isPresent()) {
             User u = user.get();
-            return ResponseEntity.ok(
-                    UserResponse.builder()
-                            .id(u.getId())
-                            .firstName(u.getFirstName())
-                            .lastName(u.getLastName())
-                            .nickname(u.getNickname())
-                            .email(u.getEmail())
-                            .role(u.getRole().name())
-                            .build()
-            );
+            return ResponseEntity.ok(UserMapper.mapToResponse(user.get()));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
