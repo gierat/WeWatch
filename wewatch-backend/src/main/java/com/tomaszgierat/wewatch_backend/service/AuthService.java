@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request) {
         userRepository.findByEmail(request.getEmail())
-                .ifPresent(user -> { throw  new RuntimeException();});
+                .ifPresent(user -> { throw  new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Email already exists");});
 
         var user = User.builder()
                 .firstName(request.getFirstName())

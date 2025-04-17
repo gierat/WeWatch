@@ -6,6 +6,7 @@ import com.tomaszgierat.wewatch_backend.dto.request.AuthRequest;
 import com.tomaszgierat.wewatch_backend.dto.request.RegisterRequest;
 import com.tomaszgierat.wewatch_backend.dto.response.AuthResponse;
 import com.tomaszgierat.wewatch_backend.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class AuthController {
     private final JwtService jwtService;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterRequest request) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
