@@ -24,17 +24,26 @@ const Navbar = () => {
       <Link to="/" className="text-2xl font-bold text-[#e50914]">WeWatch</Link>
       <ul className="flex gap-6 items-center">
         <li className="relative group">
-          <span className="cursor-pointer hover:text-[#e50914]">Categories</span>
-          <div className="absolute hidden group-hover:block bg-[#2a2a2a] text-sm mt-2 rounded shadow-lg z-50">
-            {categories.map((category, idx) => (
-              <Link
-                key={idx}
-                to={`/category/${encodeURIComponent(category)}`}
-                className="block px-4 py-2 hover:bg-[#e50914] hover:text-white whitespace-nowrap"
-              >
-                {category}
-              </Link>
-            ))}
+          <div className="cursor-pointer hover:text-[#e50914]">
+            Categories
+          </div>
+          <div className="absolute left-0 top-full 
+            opacity-0 group-hover:opacity-100 
+            scale-y-95 group-hover:scale-y-100
+            pointer-events-none group-hover:pointer-events-auto 
+            origin-top transform transition-all duration-700 ease-out 
+            text-sm rounded shadow-lg bg-[#2a2a2a] z-50">
+            <div className="flex flex-col">
+              {categories.map((category, idx) => (
+                <Link
+                  key={idx}
+                  to={`/category/${encodeURIComponent(category)}`}
+                  className="block px-4 py-2 hover:bg-[#e50914] hover:text-white whitespace-nowrap"
+                >
+                  {category}
+                </Link>
+              ))}
+            </div>
           </div>
         </li>
         {token && (
