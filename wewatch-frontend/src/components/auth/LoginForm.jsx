@@ -14,7 +14,7 @@ const LoginForm = () => {
         try {
             const data = await login({ email, password });
             loginContext(data.token);
-            navigate('/dashboard');
+            navigate('/');
         } catch (error) {
             console.error('Błąd logowania:', error);
         }

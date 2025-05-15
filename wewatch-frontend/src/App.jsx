@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import UserProfilePage from './pages/UserProfilePage';
 import MoviePage from './pages/MoviePage';
+import Navbar from './components/layout/Navbar';
 
 
 const App = () => {

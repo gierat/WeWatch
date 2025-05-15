@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../components/layout/Navbar';
 
 const HomePage = () => {
 
@@ -14,6 +15,9 @@ const HomePage = () => {
 
   return (
     <div className="wrapper">
+      <div>
+        <Navbar />
+      </div>
       <div className="slider relative w-full h-[50vh] overflow-hidden">
 
       </div>
