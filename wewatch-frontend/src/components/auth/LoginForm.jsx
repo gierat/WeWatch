@@ -13,7 +13,9 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const data = await login({ email, password });
-            loginContext(data.token);
+            if(data.token){
+                loginContext(data.token, data.userId, data.nickname);
+            }
             navigate('/');
         } catch (error) {
             console.error('Błąd logowania:', error);

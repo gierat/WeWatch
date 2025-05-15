@@ -5,10 +5,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const Navbar = () => {
   const [categories, setCategories] = useState([]);
-  const { token, logout } = useContext(AuthContext);
-
-  const userId = localStorage.getItem('userId');
-  const nickname = localStorage.getItem('nickname');
+  const { token, userId, nickname, logout } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchCategories = async () => {

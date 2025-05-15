@@ -62,6 +62,9 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
+        if (token == null || token.trim().isEmpty()) {
+            throw new IllegalArgumentException("Token is empty");
+        }
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
