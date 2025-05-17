@@ -2,6 +2,7 @@ package com.tomaszgierat.wewatch_backend.controller;
 
 import com.tomaszgierat.wewatch_backend.dto.response.CarouselImageResponse;
 import com.tomaszgierat.wewatch_backend.repository.MovieRepository;
+import com.tomaszgierat.wewatch_backend.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,6 +21,10 @@ import java.util.stream.Stream;
 @CrossOrigin("*")
 @RequiredArgsConstructor
 public class ImageController {
+
+    private final ImageService imageService;
+
+
     @GetMapping("/movies/{filename:.+}")
     public ResponseEntity<Resource> getMovieImage(@PathVariable String filename) throws IOException {
         Path filePath = Paths.get("uploads/movies").resolve(filename).normalize();
@@ -47,4 +52,11 @@ public class ImageController {
                 .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(filePath))
                 .body(file);
     }
+
+    @GetMapping("/recommend_carousel")
+    public ResponseEntity<List<CarouselImageResponse>> getCarouselImages() throws IOException {
+        var images = imageService.getRecommendCarouselImages();
+        return ResponseEntity.ok(images);
+    }
+    
 }
