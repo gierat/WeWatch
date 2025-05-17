@@ -4,16 +4,13 @@ import axios from 'axios';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Slider from '../components/home/Slider';
+import MovieCarousel from '../components/home/MovieCarousel';
 
 const HomePage = () => {
   return (
     <div className="wrapper">
-      <div>
-        <Navbar />
-      </div>
-      <div>
-        <Slider />
-      </div>
+      <Navbar />
+      <Slider />
       <div className="main_content max-w-[1200px] mx-auto px-4">
         <section className="about-forum bg-[#1e1e1e] text-center my-8 p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl text-[#e50914] mb-4">Welcome to WeWatch</h2>
@@ -26,10 +23,7 @@ const HomePage = () => {
 
         <section className="recommended text-center my-8">
           <h2 className="text-xl text-[#e50914] mb-4">Recommended Movies</h2>
-          <div className="relative overflow-hidden">
-            <div className="carousel-container overflow-hidden">
-            </div>
-          </div>
+          <MovieCarousel />
         </section>
 
         <section className="categories text-center my-8">
@@ -38,9 +32,7 @@ const HomePage = () => {
           </div>
         </section>
       </div>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

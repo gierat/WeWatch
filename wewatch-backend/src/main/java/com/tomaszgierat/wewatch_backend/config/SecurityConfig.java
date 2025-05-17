@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/images/**").permitAll()
                         .requestMatchers("/api/categories").permitAll()
+                        .requestMatchers("/api/movies/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
