@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer';
 import Slider from '../components/home/Slider';
 import MovieCarousel from '../components/home/MovieCarousel';
 import RecommendCarousel from '../components/home/RecommendCarousel';
+import PopularCategories from '../components/home/PopularCategories';
 
 const HomePage = () => {
   return (
@@ -21,17 +22,8 @@ const HomePage = () => {
             passionate cinephile, WeWatch is the perfect place to engage with others who share your interests.
           </p>
         </section>
-
-        <section className="recommended text-center my-8">
-          <h2 className="text-xl text-[#e50914] mb-4">Recommended Movies</h2>
-          <RecommendCarousel />
-        </section>
-
-        <section className="categories text-center my-8">
-          <h2 className="text-xl text-[#e50914] mb-4">Popular Categories</h2>
-          <div className="category-list flex flex-wrap justify-center gap-4">
-          </div>
-        </section>
+        <RecommendCarousel />
+        <PopularCategories />
       </div>
       <Footer />
     </div>
