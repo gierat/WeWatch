@@ -5,6 +5,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Slider from '../components/home/Slider';
 import MovieCarousel from '../components/home/MovieCarousel';
+import RecommendCarousel from '../components/home/RecommendCarousel';
 
 const HomePage = () => {
   return (
@@ -23,7 +24,7 @@ const HomePage = () => {
 
         <section className="recommended text-center my-8">
           <h2 className="text-xl text-[#e50914] mb-4">Recommended Movies</h2>
-          <MovieCarousel />
+          <RecommendCarousel />
         </section>
 
         <section className="categories text-center my-8">
