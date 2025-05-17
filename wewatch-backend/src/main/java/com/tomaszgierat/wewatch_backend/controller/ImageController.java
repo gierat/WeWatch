@@ -58,5 +58,19 @@ public class ImageController {
         var images = imageService.getRecommendCarouselImages();
         return ResponseEntity.ok(images);
     }
-    
+
+    @GetMapping("/recommend_carousel/{filename:.+}")
+    public ResponseEntity<Resource> getRecommendCarouselImage(@PathVariable String filename) throws IOException {
+        Path filePath = Paths.get("uploads/recommend_carousel").resolve(filename).normalize();
+        Resource file = new UrlResource(filePath.toUri());
+
+        if (!file.exists() || !file.isReadable()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(filePath))
+                .body(file);
+    }
+
 }
