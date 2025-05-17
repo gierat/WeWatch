@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../services/api';
 import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 const UserProfilePage = () => {
   const { id } = useParams();
@@ -45,6 +46,9 @@ const UserProfilePage = () => {
             <p><span className="font-semibold">Role:</span> {user.role}</p>
           </div>
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

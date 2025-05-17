@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 const HomePage = () => {
 
@@ -46,10 +47,9 @@ const HomePage = () => {
           </div>
         </section>
       </div>
-
-      <footer className="bg-[#1e1e1e] text-center text-[#b3b3b3] text-sm py-4">
-        <p>© 2024 WeWatch. All rights reserved.</p>
-      </footer>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

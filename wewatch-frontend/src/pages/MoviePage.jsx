@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../services/api';
 import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const MoviePage = () => {
       <div>
         <Navbar />
       </div>
-      <div className="movie-container max-w-6xl mx-auto bg-[#1e1e1e] p-6 rounded-lg shadow-lg mt-6">
+      <div className="movie-container min-h-screen max-w-6xl mx-auto mb-5 bg-[#1e1e1e] p-6 rounded-lg shadow-lg mt-6">
         <div className="movie-columns flex flex-col md:flex-row gap-6">
           <div className="movie-poster w-full md:max-w-xs">
             <img
@@ -54,6 +55,9 @@ const MoviePage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );
