@@ -6,12 +6,24 @@ import Footer from '../components/layout/Footer';
 
 const HomePage = () => {
 
+  const [slides, setSlides] = useState([
+    "slider_1.jpg",
+    "slider_2.jpg",
+    "slider_3.jpg"
+  ]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const slideRef = useRef(null);
   const carouselRef = useRef(null);
 
   useEffect(() => {
- 
-  }, []);
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides]);
 
 
   return (
@@ -20,7 +32,20 @@ const HomePage = () => {
         <Navbar />
       </div>
       <div className="slider relative w-full h-[50vh] overflow-hidden">
-
+        {slides.map((filename, index) => (
+          <div
+            key={filename}
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            <img
+              src={`http://localhost:8080/api/images/slider/${filename}`}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
       </div>
 
       <div className="main_content max-w-[1200px] mx-auto px-4">

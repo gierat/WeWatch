@@ -27,5 +27,17 @@ public class ImageController {
                 .body(file);
     }
 
-    
+    @GetMapping("/slider/{filename:.+}")
+    public ResponseEntity<Resource> getSliderImage(@PathVariable String filename) throws IOException {
+        Path filePath = Paths.get("uploads/slider").resolve(filename).normalize();
+        Resource file = new UrlResource(filePath.toUri());
+
+        if (!file.exists() || !file.isReadable()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(filePath))
+                .body(file);
+    }
 }
