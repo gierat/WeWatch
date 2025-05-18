@@ -37,7 +37,7 @@ const Navbar = () => {
               {categories.map((category, idx) => (
                 <Link
                   key={idx}
-                  to={`/category/${encodeURIComponent(category)}`}
+                  to={`/categories/${encodeURIComponent(category)}`}
                   className="block px-4 py-2 hover:bg-[#e50914] hover:text-white whitespace-nowrap"
                 >
                   {category}

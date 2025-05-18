@@ -22,7 +22,7 @@ const PopularCategories = () => {
       <h2 className="text-[1.8rem] text-[#e50914] mb-4 font-semibold">Popular Categories</h2>
       <div className="category-list flex flex-wrap justify-center gap-4">
         {categories.map((category, index) => (
-          <Link key={index} to={`/category/${encodeURIComponent(category)}`} className="text-white no-underline">
+          <Link key={index} to={`/categories/${encodeURIComponent(category)}`} className="text-white no-underline">
             <div className="category bg-[#1e1e1e] px-5 py-2 text-sm rounded hover:bg-[#e50914] transition-colors w-32">
               {category}
             </div>

@@ -45,7 +45,7 @@ const MoviePage = () => {
                 {movie.categories.map((cat, i) => (
                   <a
                     key={i}
-                    href={`/category/${encodeURIComponent(cat)}`}
+                    href={`/categories/${encodeURIComponent(cat)}`}
                     className="category-button border border-[#e50914] px-4 py-2 rounded-md hover:bg-[#e50914] hover:text-white text-sm"
                   >
                     {cat}
