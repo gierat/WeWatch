@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage';
 import UserProfilePage from './pages/UserProfilePage';
 import MoviePage from './pages/MoviePage';
 import Navbar from './components/layout/Navbar';
+import CategoryPage from './pages/CategoryPage';
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/users/:id" element={<UserProfilePage />} />
                     <Route path="/movies/:id" element={<MoviePage />} />
+                    <Route path="/categories/:categoryName" element={<CategoryPage />} />
                 </Routes>
             </Router>
         </AuthProvider>
