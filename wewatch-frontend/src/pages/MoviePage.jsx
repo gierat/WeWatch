@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import api from '../services/api';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import CommentList from '../components/comments/CommentList';
 
 const MoviePage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [refreshComments, setRefreshComments] = useState(false);
+
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -55,6 +58,7 @@ const MoviePage = () => {
             </div>
           </div>
         </div>
+        <CommentList movieId={movie.id} key={refreshComments} />
       </div>
       <div>
         <Footer />
