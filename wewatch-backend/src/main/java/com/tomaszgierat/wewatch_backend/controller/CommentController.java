@@ -1,6 +1,5 @@
 package com.tomaszgierat.wewatch_backend.controller;
 
-import com.tomaszgierat.wewatch_backend.dto.request.CommentRequest;
 import com.tomaszgierat.wewatch_backend.dto.response.CommentResponse;
 import com.tomaszgierat.wewatch_backend.service.CommentService;
 import lombok.RequiredArgsConstructor;
