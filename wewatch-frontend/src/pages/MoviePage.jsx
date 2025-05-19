@@ -4,6 +4,7 @@ import api from '../services/api';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import CommentList from '../components/comments/CommentList';
+import CommentForm from '../components/comments/CommentForm';
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -58,6 +59,7 @@ const MoviePage = () => {
             </div>
           </div>
         </div>
+        <CommentForm movieId={movie.id} onCommentAdded={() => setRefreshComments(!refreshComments)} />
         <CommentList movieId={movie.id} key={refreshComments} />
       </div>
       <div>

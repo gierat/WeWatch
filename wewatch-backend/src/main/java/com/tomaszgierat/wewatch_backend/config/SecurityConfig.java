@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/images/**").permitAll()
                         .requestMatchers("/api/categories").permitAll()
                         .requestMatchers("/api/movies/**").permitAll()
+                        .requestMatchers("/api/comments/movie/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
