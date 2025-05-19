@@ -1,5 +1,6 @@
 package com.tomaszgierat.wewatch_backend.controller;
 
+import com.tomaszgierat.wewatch_backend.dto.request.CommentRequest;
 import com.tomaszgierat.wewatch_backend.dto.response.CommentResponse;
 import com.tomaszgierat.wewatch_backend.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,11 @@ public class CommentController {
     @GetMapping("/movie/{movieId}")
     public ResponseEntity<List<CommentResponse>> getComments(@PathVariable Long movieId) {
         return ResponseEntity.ok(commentService.getCommentsForMovie(movieId));
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> addComment(@RequestBody CommentRequest request) {
+        commentService.addComment(request);
+        return ResponseEntity.ok().build();
     }
 }
