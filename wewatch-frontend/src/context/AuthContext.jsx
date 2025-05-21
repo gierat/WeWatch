@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('authToken', jwtToken);
         localStorage.setItem('userId', id);
         localStorage.setItem('nickname', nick);
-        localStorage.setItem('role', role);
+        localStorage.setItem('authRole', role);
     };
 
     const logout = () => {
