@@ -2,7 +2,8 @@ package com.tomaszgierat.wewatch_backend.dto.request;
 
 import lombok.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentRequest {

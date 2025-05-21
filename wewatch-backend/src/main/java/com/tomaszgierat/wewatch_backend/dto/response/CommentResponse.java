@@ -3,7 +3,8 @@ package com.tomaszgierat.wewatch_backend.dto.response;
 import lombok.*;
 import java.time.LocalDateTime;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

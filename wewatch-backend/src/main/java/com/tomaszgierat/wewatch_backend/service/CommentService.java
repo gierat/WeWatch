@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @Service
 @RequiredArgsConstructor
@@ -57,5 +58,21 @@ public class CommentService {
                         .createdAt(c.getCreatedAt())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    public void deleteComment(Long commentId) {
+        String email = ((UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal()).getUsername();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "User not found"));
+
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Comment not found"));
+
+        if (user.getRole() != com.tomaszgierat.wewatch_backend.model.ROLE.ADMIN) {
+            throw new ResponseStatusException(UNAUTHORIZED, "Only admins can delete comments");
+        }
+
+        commentRepository.delete(comment);
     }
 }
