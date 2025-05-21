@@ -14,7 +14,7 @@ const LoginForm = () => {
         try {
             const data = await login({ email, password });
             if(data.token){
-                loginContext(data.token, data.userId, data.nickname);
+                loginContext(data.token, data.userId, data.nickname, data.role);
             }
             navigate('/');
         } catch (error) {
