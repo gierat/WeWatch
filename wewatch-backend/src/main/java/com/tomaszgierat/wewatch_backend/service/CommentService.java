@@ -2,9 +2,12 @@ package com.tomaszgierat.wewatch_backend.service;
 
 import com.tomaszgierat.wewatch_backend.dto.request.CommentRequest;
 import com.tomaszgierat.wewatch_backend.dto.response.CommentResponse;
+import com.tomaszgierat.wewatch_backend.mapper.CommentMapper;
 import com.tomaszgierat.wewatch_backend.model.Comment;
 import com.tomaszgierat.wewatch_backend.model.Movie;
 import com.tomaszgierat.wewatch_backend.model.User;
+import com.tomaszgierat.wewatch_backend.rabbit.CommentNotificationEvent;
+import com.tomaszgierat.wewatch_backend.rabbit.CommentNotificationPublisher;
 import com.tomaszgierat.wewatch_backend.repository.CommentRepository;
 import com.tomaszgierat.wewatch_backend.repository.MovieRepository;
 import com.tomaszgierat.wewatch_backend.repository.UserRepository;
@@ -14,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +31,9 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final MovieRepository movieRepository;
     private final UserRepository userRepository;
+    private final CommentNotificationPublisher commentNotificationPublisher;
 
-    public void addComment(CommentRequest request) {
+    public CommentResponse addComment(CommentRequest request) {
         Movie movie = movieRepository.findById(request.getMovieId())
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Movie not found"));
 
@@ -43,7 +48,18 @@ public class CommentService {
                 .content(request.getContent())
                 .build();
 
-        commentRepository.save(comment);
+        Comment saved = commentRepository.save(comment);
+
+        commentNotificationPublisher.publish(CommentNotificationEvent.builder()
+                .commentId(saved.getId())
+                .movieId(movie.getId())
+                .movieTitle(movie.getTitle())
+                .nickname(user.getNickname())
+                .content(saved.getContent())
+                .createdAt(saved.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+                .build());
+
+        return CommentMapper.mapToResponse(saved);
     }
 
     public List<CommentResponse> getCommentsForMovie(Long movieId) {
