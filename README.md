@@ -13,3 +13,25 @@ WeWatch is a full-stack web application that allows users to browse, comment, an
 - Real-time comment event publishing using RabbitMQ
 
 ---
+## 🤖 Technologies Used
+
+### Frontend
+
+- **React**: For building a dynamic and component-driven UI
+- **React Router DOM**: Routing system for SPA
+- **Axios**: HTTP requests
+- **Tailwind CSS**: Modern and customizable utility-first styling
+
+### Backend
+
+- **Spring Boot**: Framework for building Java-based RESTful APIs
+- **Spring Security + JWT**: Secure authentication and role-based access
+- **Hibernate + JPA**: ORM layer for managing MySQL database
+- **RabbitMQ**: Event-driven messaging system for asynchronous operations
+
+### Infrastructure
+
+- **Docker**: To containerize RabbitMQ and MySQL Database locally 
+- **MySQL**: Relational database for persisting user, movie, and comment data
+
+---
