@@ -12,7 +12,6 @@ WeWatch is a full-stack web application that allows users to browse, comment, an
 - Categories and movie filtering by category
 - Real-time comment event publishing using RabbitMQ
 
----
 ## 🤖 Technologies Used
 
 ### Frontend
@@ -34,31 +33,34 @@ WeWatch is a full-stack web application that allows users to browse, comment, an
 - **Docker**: To containerize RabbitMQ and MySQL Database locally 
 - **MySQL**: Relational database for persisting user, movie, and comment data
 
----
-### Structure
+## 📁 Project Structure
+
+```
 wewatch-backend/
-|-- src/
-  |-- config/                # JWT, Security and Swagger Config
-  |-- controller/            # REST API controllers
-  |-- dto/                   # Defines Data Transfer Objects
-  |-- mapper/                # Converting between entities and DTOs
-  |-- model/                 # JPA Entity classes
-  |-- rabbit/                # RabbitMQ config, listener, publisher
-  |-- repository/            # Interfaces for database operations
-  |-- service/               # Business logic between controllers and repositores
-  |-- Application.java       # Main Spring Boot Application
-|-- uploads/                 # Folder for images 
-  |-- movies/                # Movie covers
-  |-- recommend_carousel     # Recommend Carosuel movie covers
-  |-- slider                 # Slider images
+├── src/
+│   ├── config/              # JWT, Security and Swagger config
+│   ├── controller/          # REST API controllers
+│   ├── dto/                 # Defines Data Transfer Objects
+│   ├── mapper/              # Converting between entities and DTOs
+│   ├── model/               # JPA Entity classes
+│   ├── rabbit/              # RabbitMQ config, listener, publisher
+│   ├── repository/          # Interfaces for database operations
+│   ├── service/             # Business logic between controllers and repositories
+│   └── Application.java     # Main Spring Boot Application
+├── uploads/                 # Folder for images
+│   ├── movies/              # Movie covers
+│   ├── recommend_carousel/  # Recommend Carousel movie covers
+│   └── slider/              # Slider images
 
 wewatch-frontend/
-|-- src/
-  |-- components/           # Reusable UI components
-  |-- context/              # AuthContext for role/token handling
-  |-- pages/                # Application Pages
-  |-- services/             # Axios API layer
-  |-- App.jsx               # Routing
-  |-- index.css             # Global CSS config
-  |-- main.jsx              # Main React Application
+└── src/
+    ├── components/          # Reusable UI components
+    ├── context/             # AuthContext for role/token handling
+    ├── pages/               # Application Pages
+    ├── services/            # Axios API layer
+    ├── App.jsx              # Routing
+    ├── index.css            # Global CSS config
+    └── main.jsx             # Main React Application
+```
+ 
   
