@@ -3,6 +3,10 @@ package com.tomaszgierat.wewatch_backend.service;
 import com.tomaszgierat.wewatch_backend.dto.response.CarouselImageResponse;
 import com.tomaszgierat.wewatch_backend.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,6 +20,19 @@ import java.util.stream.Stream;
 public class ImageService {
 
     private final MovieRepository movieRepository;
+
+    public ResponseEntity<Resource> getImageFromFolder(String folder, String filename) throws IOException {
+        Path filePath = Paths.get(folder).resolve(filename).normalize();
+        Resource file = new UrlResource(filePath.toUri());
+
+        if (!file.exists() || !file.isReadable()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(filePath))
+                .body(file);
+    }
 
     public List<CarouselImageResponse> getRecommendCarouselImages() throws IOException {
         Path folderPath = Paths.get("uploads/recommend_carousel");
