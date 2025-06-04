@@ -62,5 +62,6 @@ wewatch-frontend/
     ├── index.css            # Global CSS config
     └── main.jsx             # Main React Application
 ```
- 
-  
+## 🧰 Architecture Overview
+
+![arichtecture](https://github.com/user-attachments/assets/c3bbad28-19e8-4817-8a43-213f8f0a82f8)  
