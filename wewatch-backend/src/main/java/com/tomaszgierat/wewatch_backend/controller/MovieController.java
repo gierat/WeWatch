@@ -1,10 +1,8 @@
 package com.tomaszgierat.wewatch_backend.controller;
 
 import com.tomaszgierat.wewatch_backend.dto.response.MovieResponse;
-import com.tomaszgierat.wewatch_backend.mapper.MovieMapper;
-import com.tomaszgierat.wewatch_backend.repository.MovieRepository;
+import com.tomaszgierat.wewatch_backend.service.MovieService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,20 +14,17 @@ import java.util.List;
 @CrossOrigin("*")
 public class MovieController {
 
-    private final MovieRepository movieRepository;
+    private final MovieService movieService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getMovieById(@PathVariable Long id) {
-        return movieRepository.findById(id)
-                .map(movie -> ResponseEntity.ok(MovieMapper.mapToResponse(movie)))
+        return movieService.getMovieById(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
     public List<MovieResponse> getAllMovies() {
-        return movieRepository.findAll(Sort.by("id").ascending()).stream()
-                .limit(8)
-                .map(MovieMapper::mapToResponse)
-                .toList();
+        return movieService.getAllMovies();
     }
 }
