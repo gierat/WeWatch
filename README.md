@@ -100,3 +100,32 @@ npm install
 npm run dev
 ```
 Frontend runs at: http://localhost:5173
+
+##🔎 API Endpoints
+
+### Auth
+- POST /api/auth/register - Register new user
+- POST /api/auth/login - Login, returns JWT
+
+### Movies
+- GET /api/movies - List all movies
+- GET /api/movies/{id} - Get movie by ID
+
+### Comments
+- GET /api/comments/movie/{movieId} - List comments for movie
+- POST /api/comments - Add comment (auth required)
+- DELETE /api/comments/{id} - Delete comment (admin only)
+
+### Categories
+- GET /api/categories - List all categories
+- GET /api/categories/{name} - Get movies by category
+
+### Images
+- GET /api/images/movies/{filename} - Get movie poster
+- GET /api/images/slider/{filename} - Get homepage slider image
+- GET /api/images/recommend_carousel - List carousel images with movie IDs
+- GET /api/images/recommend_carousel/{filename} - Get individual carousel image
+
+## 💪 Author
+Tomasz Gierat
+Feel free to contribute, fork, or raise issues!
