@@ -65,3 +65,38 @@ wewatch-frontend/
 ## 🧰 Architecture Overview
 
 ![arichtecture](https://github.com/user-attachments/assets/c3bbad28-19e8-4817-8a43-213f8f0a82f8)  
+
+## 🚀 How to Run
+
+### Prerequisites
+
+- Java 17+
+- Node.js + npm
+- MySQL running
+- Docker (for RabbitMQ)
+
+### Step 1: Setup RabbitMQ and exampl of MySQL database
+
+```bash
+docker run -d --hostname my-rabbit --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+- Access management UI: http://localhost:15672 
+- Default user: guest / guest
+
+```bash
+docker run --name mysql-dev -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=dev -e MYSQL_PASSWORD=root -p 3306:3306 -d mysql:latest
+```
+- MySQL run at http://localhost:3306
+- Root User: root / root
+- You can change details in application.yml
+
+### Step 2: Backend
+Move into wewatch-backend directory and run Application.java
+
+### Step 3: Frontend
+Move into wewatch-frontend
+```bash
+npm install
+npm run dev
+```
+Frontend runs at: http://localhost:5173
