@@ -13,7 +13,6 @@ const UserProfilePage = () => {
     const fetchUser = async () => {
       try {
         const response = await api.get(`/users/${id}`);
-        console.log("Requested user ID:", id);
         setUser(response.data);
       } catch (err) {
         setError('User not found');
